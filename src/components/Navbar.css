@@ -1,0 +1,22 @@
+.navbar {
+    background-color: #0db344;
+    color: rgb(241, 239, 239);
+    width: 100%-60px;
+    padding: 10px 20px; 
+    position: relative; /* Asegurarse de que no esté en posición absoluta */
+    z-index: 1;
+    box-sizing: border-box;
+    height: 60px;
+  }
+  .navbar .nav-link {
+    color: white;
+    margin-left: 20px;
+  }
+  
+  .navbar .nav-link:hover {
+    color: #ddd;
+  }
+  
+  .navbar .nav-link.active {
+    color: #fff;
+  }

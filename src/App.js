@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
+import UserCRUD from './components/UserCRUD';
+import ProductCRUD from './components/ProductCRUD';
+import CategoryCRUD from './components/CategoryCRUD';
 
 function App() {
+  const token = localStorage.getItem('token');  // Verifica si el usuario está autenticado
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* Ruta de inicio */}
+        <Route path="/" element={<HomePage />} />
+        
+        {/* Ruta de login */}
+        <Route path="/login" element={token ? <Navigate to="/dashboard" /> : <LoginPage />} />
+        
+        {/* Rutas protegidas (Dashboard) */}
+        <Route path="/dashboard" element={token ? <DashboardPage /> : <Navigate to="/login" />} >
+          {/* Rutas dentro del dashboard para CRUD */}
+          <Route path="users" element={<UserCRUD />} />
+          <Route path="products" element={<ProductCRUD />} />
+          <Route path="categories" element={<CategoryCRUD />} />
+        </Route>
+
+        {/* Redirige a inicio si la ruta no existe */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Router>
   );
 }
 

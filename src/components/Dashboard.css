@@ -1,0 +1,21 @@
+/* Estilos globales para el dashboard */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+  }
+  
+  /* Estilos para el contenedor principal que incluye el sidebar y el contenido */
+  .dashboard-main {
+    display: flex;
+    flex-grow: 1; /* Permite que el contenido crezca y ocupe el espacio disponible */
+  }
+  
+  /* Estilos para el contenido del dashboard */
+  .dashboard-content {
+    flex-grow: 1; /* El contenido principal ocupará el espacio restante */
+    padding: 20px;
+    background-color: #f4f4f4; /* Fondo claro */
+    overflow-y: auto; /* Permite que el contenido sea desplazable si es muy largo */
+    margin-left: 240px;
+  }

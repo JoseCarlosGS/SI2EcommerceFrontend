@@ -2,9 +2,10 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
-import UserCRUD from './components/UserCRUD';
+import UserCRUD from './components/users/UserCRUD';
 import ProductCRUD from './components/ProductCRUD';
 import CategoryCRUD from './components/CategoryCRUD';
+import RoleCRUD from './components/roles/RoleCRUD';
 
 function App() {
   const token = localStorage.getItem('token');  // Verifica si el usuario está autenticado
@@ -23,6 +24,7 @@ function App() {
           <Route path="users" element={<UserCRUD />} />
           <Route path="products" element={<ProductCRUD />} />
           <Route path="categories" element={<CategoryCRUD />} />
+          <Route path="roles" element={<RoleCRUD />} />
         </Route>
 
         {/* Redirige a inicio si la ruta no existe */}

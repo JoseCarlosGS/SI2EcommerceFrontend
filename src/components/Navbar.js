@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { Nav, NavDropdown } from 'react-bootstrap';
+import { NavDropdown } from 'react-bootstrap';
 import './Navbar.css'; // 
+import React from 'react';
 
-function Navbar() {
+function Navbar({ toggleSidebar, isSidebarCollapsed }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -10,9 +11,16 @@ function Navbar() {
     navigate('/login');
   };
 
-  return (
+  return ( 
     <nav className='navbar'>
-      <h1>Sistema Bancario</h1>
+      <button onClick={toggleSidebar} className="sidebar-toggle-btn">
+        {isSidebarCollapsed ? (
+          <i className="bi bi-chevron-right"></i> // Icono hacia la derecha
+        ) : (
+          <i className="bi bi-chevron-left"></i> // Icono hacia la izquierda
+        )}
+      </button>
+      <h1>Administracion</h1>
     </nav>
   );
 }

@@ -1,0 +1,78 @@
+.user-register {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    background-color: #fff;
+    width: 100%;
+    max-width: 400px; /* Aumentado para mayor comodidad */
+    margin: 40px auto; /* Centra el formulario */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añadir sombra sutil */
+  }
+  
+  .user-register h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .user-register form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-register label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 8px;
+  }
+  
+  .user-register input {
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .user-register input:focus {
+    border-color: #007bff; /* Azul de enfoque */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Efecto de enfoque */
+    outline: none;
+  }
+  
+  .user-register button {
+    padding: 12px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff; /* Botón azul */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .user-register button:hover {
+    background-color: #0056b3; /* Cambio de color en hover */
+  }
+  
+  .user-register p {
+    text-align: center;
+    color: #e74c3c; /* Color rojo para errores */
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 500px) {
+    .user-register {
+      padding: 20px;
+      width: 90%;
+    }
+  }
+  
+  

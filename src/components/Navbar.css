@@ -1,12 +1,26 @@
+.sidebar-toggle-btn {
+  background-color: transparent; /* Fondo transparente */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  font-size: 24px; /* Tamaño del icono */
+  color: white; /* Color del icono */
+  margin-right: 20px; /* Espacio entre el botón y el título */
+  transition: color 0.3s; /* Suavizar el cambio de color */
+}
+
+.sidebar-toggle-btn:hover {
+  color: #0d0d1a; /* Cambia el color al pasar el ratón */
+}
+
 .navbar {
-    background-color: #0db344;
+    display: flex;
+    background-color: #37373f;;
     color: rgb(241, 239, 239);
-    width: 100%-60px;
     padding: 10px 20px; 
     position: relative; /* Asegurarse de que no esté en posición absoluta */
     z-index: 1;
     box-sizing: border-box;
-    height: 60px;
+    height: 70px;
   }
   .navbar .nav-link {
     color: white;
@@ -20,3 +34,28 @@
   .navbar .nav-link.active {
     color: #fff;
   }
+
+  .navbar h1 {
+    flex: 1; /* Permitir que el título tome el espacio disponible */
+    text-align: center; /* Centrar el título */
+  }
+  
+  .navbar button {
+    background-color: transparent; /* Sin fondo */
+    color: rgb(241, 239, 239); /* Color del texto */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+    transition: color 0.3s; /* Efecto de transición al cambiar de color */
+  }
+  
+  .navbar button:hover {
+    color: #ddd; /* Color al pasar el mouse */
+  }
+  .navbar.sidebar-collapsed {
+    margin-left: 60px; /* Ajusta el margen izquierdo cuando el sidebar está colapsado */
+    width: calc(100% - 60px); /* Ajusta el ancho para ocupar el espacio restante */
+}
+.navbar.sidebar-collapsed {
+  margin-left: 60px !important;
+  width: calc(100% - 60px) !important;
+}

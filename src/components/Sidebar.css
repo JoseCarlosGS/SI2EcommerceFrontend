@@ -1,61 +1,201 @@
+/* Estilos para el contenedor del sidebar */
 .sidebar {
-    width: 240px;
-    background-color: #150546;
-    color: white;
-    padding: 3px;
-    position: fixed;
-    height: 100%;
-    transition: width 0.3s;
-    overflow: hidden;
-  }
-  .sidebar li span {
-    display: inline; /* Para el texto, mostrar como inline */
-    transition: opacity 0.3s ease; /* Transición suave */
-  }
-  
-  .sidebar li i {
-    display: inline-block; /* Asegúrate de que el icono sea inline */
-    transition: opacity 0.3s ease; /* Transición suave para el icono */
-  }
-  .sidebar h2 {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
+  width: 240px;
+  background-color: #150546;
+  color: white;
+  padding: 3px;
+  height: 100%;
+  transition: width 0.3s;
+  overflow: hidden;
+  white-space: nowrap;
+}
 
-  .sidebar-link i {
-    margin-right: 10px;
-    font-size: 1.2rem; /* Tamaño del icono */
-  }
+.sidebar.collapsed {
+  width: 80px; /* Ancho del sidebar colapsado */
+  padding: 10px; /* Menos espaciado interno */
+}
 
-  .sidebar-link {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .sidebar li {
-    margin: 15px 0;
-  }
-  .sidebar a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    display: flex; /* Cambiar a flex para alinear icono y texto */
-    align-items: center; /* Centrar verticalmente */
-    padding: 10px; /* Espaciado para los enlaces */
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    white-space: nowrap;
-  }
-  
-  /* Cambiar el fondo al hacer hover */
-  .sidebar a:hover {
-    background-color: #1a1a2e;
-  }
+/* General para los ítems de la lista */
+.sidebar-item {
+  margin: 15px 0;
+}
+
+.sidebar-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-right: 0px;
+}
+
+.sidebar-link i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.sidebar-link span {
+  margin-left: 1px; /* Espacio entre el ícono y el texto */
+  transition: opacity 0.3s ease, margin-left 0.3s ease; /* Transición suave para opacidad y margen */
+  overflow: hidden; /* Ocultar cualquier desbordamiento */
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+  margin-right: 5px;
+}
+
+.sidebar.collapsed .sidebar-link span {
+  opacity: 0; /* Hacer que el texto sea invisible */
+  width: 0; /* Evitar que ocupe espacio */
+  overflow: hidden; /* Ocultar el desbordamiento */
+  margin-left: 0; /* Reducir el margen al colapsar */
+}
+
+.sidebar-item {
+  position: relative; /* Para el submenú */
+}
+
+.submenu {
+  display: none; /* Ocultar el submenú por defecto */
+}
+
+
+.sidebar-item.active .submenu {
+  display: block; /* Mostrar el submenú cuando el ítem está activo */
+}
+
+/* Cambiar color al hacer hover */
+.sidebar-link:hover {
+  background-color: #1a1a2e;
+}
+
+/* Estilo para el icono del desplegable */
+.dropdown-icon {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Estilo para el submenú */
+.submenu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: none; /* Ocultamos el submenú por defecto */
+  margin-left: 15px; /* Añadir espacio al submenú */
+}
+
+.submenu li {
+  margin: 10px 0;
+}
+
+/* Ajusta los íconos específicos de productos y roles */
+.sidebar ul li i {
+  margin-right: 15px; /* Añade espacio entre el ícono y el texto */
+}
+
+.sidebar-sublink {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-sublink:hover {
+  background-color: #1a1a2e;
+}
+
+/* Estilos cuando el submenú esté activo */
+.sidebar-item.active .submenu {
+  display: block; /* Mostrar el submenú cuando esté activo */
+}
+
+/* Girar el ícono de desplegable cuando esté activo */
+.sidebar-item.active .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.submenu .sidebar-sublink {
+  padding: 5px 15px; /* Espaciado interno del submenú */
+  display: flex;
+  align-items: center; /* Alinear los íconos y el texto verticalmente */
+
+}
+
+.sidebar.collapsed .submenu .sidebar-sublink i {
+  margin-left: 0; /* Reducir el margen de los íconos del submenú al colapsar */
+}
+
+.sidebar.collapsed .submenu .sidebar-sublink span {
+  opacity: 0; /* Hacer que el texto del submenú sea invisible al colapsar */
+  width: 0; /* Evitar que ocupe espacio */
+  overflow: hidden;
+}
+
+.submenu .sidebar-sublink i {
+  margin-left: 5px; /* Espacio entre el ícono y el texto del submenú */
+  transition: margin-left 0.3s ease; /* Transición suave para el margen */
+}
+
+.sidebar-item i, .submenu i {
+  font-size: 1.5em; /* Tamaño de los íconos en el sidebar */
+  transition: transform 0.3s, font-size 0.3s; /* Suavizar la transformación */
+}
+
+.sidebar.collapsed .sidebar-link i {
+  font-size: 1.8em; /* Aumentar el tamaño del ícono en el estado colapsado */
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar los elementos */
+  padding: 10px 0; /* Espaciado superior e inferior */
+  transition: opacity 0.3s ease; /* Suavizar el cambio de visibilidad */
+}
+
+.profile-icon {
+  font-size: 5.5rem; /* Tamaño del ícono de perfil grande */
+  margin-bottom: 10px; /* Espacio entre el ícono y los botones */
+  transition: font-size 0.3s ease; /* Suavizar el cambio de tamaño */
+}
+
+.profile-buttons {
+  display: flex;
+  gap: 10px; /* Espacio entre los botones */
+  transition: opacity 0.3s ease; /* Suavizar el cambio de visibilidad */
+}
+
+.profile-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Ancho del botón */
+  height: 40px; /* Alto del botón */
+  border-radius: 50%; /* Bordes redondeados */
+  background-color: #1a1a2e; /* Color de fondo */
+  color: white; /* Color del ícono */
+  transition: background-color 0.3s; /* Transición suave para el color de fondo */
+}
+
+.profile-button:hover {
+  background-color: #0d0d1a; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos para el estado colapsado */
+.sidebar.collapsed .profile-icon {
+  font-size: 1.5rem; /* Tamaño reducido del ícono al colapsar */
+}
+
+.sidebar.collapsed .profile-buttons {
+  opacity: 0; /* Hacer que los botones sean invisibles */
+  pointer-events: none; /* Deshabilitar la interacción */
+}

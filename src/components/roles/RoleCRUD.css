@@ -1,5 +1,5 @@
 /* Estilos para el contenedor de la tabla */
-.user-crud-container {
+.role-crud-container {
     padding: 20px;
     background-color: #f8f9fa;
     border-radius: 8px;
@@ -14,7 +14,7 @@
   }
   
   /* Estilo del botón de agregar nuevo usuario */
-  .add-user-btn {
+  .add-role-btn {
     display: block;
     margin: 10px 0 20px;
     padding: 10px 20px;
@@ -26,35 +26,35 @@
     font-size: 16px;
   }
   
-  .add-user-btn:hover {
+  .add-role-btn:hover {
     background-color: #0056b3;
   }
   
   /* Estilo de la tabla de usuarios */
-  .user-table {
+  .role-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
     background-color: white;
   }
   
-  .user-table th,
-  .user-table td {
+  .role-table th,
+  .role-table td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
   
-  .user-table th {
+  .role-table th {
     background-color: #007bff;
     color: white;
   }
   
-  .user-table tr:nth-child(even) {
+  .role-table tr:nth-child(even) {
     background-color: #f2f2f2;
   }
   
-  .user-table tr:hover {
+  .role-table tr:hover {
     background-color: #e9ecef;
   }
   
@@ -85,4 +85,3 @@
   .delete-btn:hover {
     background-color: #c82333;
   }
-  

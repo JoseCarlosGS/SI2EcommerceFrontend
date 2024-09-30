@@ -1,0 +1,80 @@
+/* Estilos generales para la página de inicio de sesión */
+/* Estilos generales para la página de inicio de sesión */
+.login-page {
+    display: flex;
+    justify-content: flex-end; /* Alinear a la derecha */
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+ /* Contenedor principal del formulario */
+.login-page .container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 350px;
+    margin-right: 50px;
+    text-align: center;
+  }
+  
+  /* Estilos para el encabezado */
+  .login-page h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Estilos para los campos de entrada */
+  .login-page .input-container {
+    position: relative;
+    margin-bottom: 15px;
+  }
+  
+  .login-page input {
+    width: 100%;
+    padding: 10px 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s;
+  }
+  
+  .login-page input:focus {
+    border: 1px solid #007bff;
+  }
+  
+  /* Estilos para el botón de ingreso */
+  .login-page button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .login-page button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos para los iconos */
+  .login-page .icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: #ccc;
+  }
+  
+  /* Espacio para la imagen en el lado izquierdo */
+  .login-page .image-container {
+    flex: 1;
+    /*background-image: url('path/to/your/image.jpg');*/
+    background-size: cover;
+    background-position: center;
+  }

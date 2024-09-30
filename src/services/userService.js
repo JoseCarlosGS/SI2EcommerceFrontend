@@ -13,4 +13,16 @@ const createUser = async (userData) => {
   return response.data;
 };
 
-export { getUsers, createUser };
+// Actualizar un usuario existente
+const updateUser = async (userId, userData) => {
+  const response = await axios.put(`${API_URL}/${userId}`, userData);
+  return response.data;
+};
+
+// Eliminar un usuario
+const deleteUser = async (userId) => {
+  const response = await axios.delete(`${API_URL}/${userId}`);
+  return response.data;
+};
+
+export { getUsers, createUser, updateUser, deleteUser };

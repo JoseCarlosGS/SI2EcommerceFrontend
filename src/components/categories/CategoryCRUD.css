@@ -1,0 +1,142 @@
+.category-crud-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 20px auto;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #343a40;
+  }
+  
+  /* Estilo del botón de agregar nuevo usuario */
+  .add-category-btn {
+    display: block;
+    margin: 10px 0 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .add-category-btn:hover {
+    background-color: #0056b3;
+  }
+
+  .add-category-btn i {
+    margin-left: 8px;  /* Añade un margen a la izquierda del ícono */
+    font-size: 1.3rem; /* Aumenta ligeramente el tamaño del ícono */
+  }
+  
+  /* Estilo de la tabla de usuarios */
+  .category-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white;
+  }
+  
+  .category-table th,
+  .category-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .category-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .category-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .product-table tr:hover {
+    background-color: #e9ecef;
+  }
+  
+  /* Estilos para botones de editar y eliminar */
+  .edit-btn,
+  .delete-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit-btn {
+    background-color: #28a745;
+    color: white;
+    margin-right: 5px;
+  }
+  
+  .edit-btn:hover {
+    background-color: #218838;
+  }
+  
+  .delete-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c82333;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center; /* Centrar el contenido */
+    margin-top: 20px; /* Espaciado superior */
+  }
+  
+  .pagination button {
+    border: none; /* Sin borde */
+    background-color: #007bff; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    padding: 10px 15px; /* Espaciado interno */
+    margin: 0 10px; /* Aumenta el margen entre botones */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave */
+  }
+  
+  .pagination button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el ratón */
+    transform: scale(1.05); /* Efecto de escalado al pasar el ratón */
+  }
+
+  .pagination .active {
+    border-radius: 20px;
+    font-weight: bold; /* Texto en negrita */
+    font-size: 1rem;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  .pagination .break-me {
+    margin: 0 10px; /* Espaciado entre los puntos de ruptura */
+  }
+  
+  .select-categories-per-page {
+    margin-bottom: 20px; /* Espaciado inferior */
+    display: flex; /* Usar flexbox */
+    align-items: center; /* Centrar verticalmente */
+  }
+  
+  .select-categories-per-page label {
+    margin-right: 10px; /* Espaciado a la derecha del label */
+  }
+  
+  .select-categories-per-page select {
+    padding: 5px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 1px solid #ddd; /* Bordes ligeros */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el selector */
+  }

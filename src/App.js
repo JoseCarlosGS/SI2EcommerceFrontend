@@ -4,7 +4,7 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import UserCRUD from './components/users/UserCRUD';
 import ProductCRUD from './components/productos/ProductCRUD';
-import CategoryCRUD from './components/CategoryCRUD';
+import CategoryCRUD from './components/categories/CategoryCRUD';
 import RoleCRUD from './components/roles/RoleCRUD';
 
 function App() {

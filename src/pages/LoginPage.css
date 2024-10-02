@@ -1,80 +1,127 @@
 /* Estilos generales para la página de inicio de sesión */
-/* Estilos generales para la página de inicio de sesión */
 .login-page {
-    display: flex;
-    justify-content: flex-end; /* Alinear a la derecha */
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-  }
-  
- /* Contenedor principal del formulario */
+  display: flex; /* Utiliza flexbox para organizar el contenido */
+  height: 100vh; /* Altura de la página completa */
+  background-color: #f4f4f4; /* Color de fondo */
+  background-image: url('../components/images/background.jpg');
+}
+
+/* Espacio para la imagen en el lado izquierdo */
+.login-page .image-container {
+  flex: 1; /* Ocupa una parte del espacio disponible */
+  background-image: url('../components/images/loginimage.jpg'); /* Imagen de fondo */
+  background-size: cover; /* Cubre todo el contenedor */
+  background-position: center; /* Centra la imagen */
+  margin: 10px;
+  border-radius: 10px;
+}
+
+/* Contenedor principal del formulario */
 .login-page .container {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    width: 350px;
-    margin-right: 50px;
-    text-align: center;
-  }
-  
-  /* Estilos para el encabezado */
-  .login-page h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  /* Estilos para los campos de entrada */
-  .login-page .input-container {
-    position: relative;
-    margin-bottom: 15px;
-  }
-  
-  .login-page input {
-    width: 100%;
-    padding: 10px 40px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    outline: none;
-    transition: border 0.3s;
-  }
-  
-  .login-page input:focus {
-    border: 1px solid #007bff;
-  }
-  
-  /* Estilos para el botón de ingreso */
-  .login-page button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .login-page button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Estilos para los iconos */
-  .login-page .icon {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    color: #ccc;
-  }
-  
-  /* Espacio para la imagen en el lado izquierdo */
-  .login-page .image-container {
-    flex: 1;
-    /*background-image: url('path/to/your/image.jpg');*/
-    background-size: cover;
-    background-position: center;
-  }
+  background: rgba(65, 64, 64, 0.444); /* Color de fondo del formulario */
+  border-radius: 10px; /* Esquinas redondeadas */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra del contenedor */
+  padding: 40px; /* Espaciado interno */
+  width: 350px; /* Ancho fijo */
+  margin-left: 50px; /* Espacio a la izquierda del formulario */
+  display: flex; /* Utiliza flexbox para centrar el contenido */
+  flex-direction: column; /* Coloca los elementos en columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  margin: 10px;
+}
+
+/* Estilos para el encabezado */
+.login-page h2 {
+  margin-bottom: 20px; /* Espacio debajo del título */
+  font-size: 24px; /* Tamaño de fuente */
+  color: #dbd3d3; /* Color del texto */
+}
+
+/* Estilos para los campos de entrada */
+.login-page .input-container {
+  position: relative; /* Para posicionar los iconos */
+  margin-bottom: 15px; /* Espacio entre campos */
+}
+
+.login-page input {
+  width: 100%; /* Ancho completo */
+  padding: 10px 40px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde */
+  border-radius: 4px; /* Esquinas redondeadas */
+  font-size: 16px; /* Tamaño de fuente */
+  outline: none; /* Sin contorno */
+  transition: border 0.3s; /* Transición suave para el borde */
+}
+
+.login-page input:focus {
+  border: 1px solid #007bff; /* Color del borde al enfocar */
+}
+
+/* Estilos para el botón de ingreso */
+.login-page button {
+  width: 100%; /* Ancho completo */
+  padding: 10px; /* Espaciado interno */
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 4px; /* Esquinas redondeadas */
+  font-size: 16px; /* Tamaño de fuente */
+  cursor: pointer; /* Cursor de mano al pasar */
+  transition: background 0.3s; /* Transición suave para el fondo */
+}
+
+.login-page button:hover {
+  background-color: #0056b3; /* Color de fondo al pasar */
+}
+
+/* Estilos para los iconos */
+.login-page .icon {
+  position: absolute; /* Posiciona el icono */
+  left: 10px; /* Distancia del borde izquierdo */
+  top: 10px; /* Distancia desde la parte superior */
+  color: #ccc; /* Color del icono */
+}
+
+/* Estilos para los botones de redes sociales */
+/* Estilos para los botones de redes sociales */
+.social-buttons {
+  display: flex; /* Usar flexbox para alinear los botones horizontalmente */
+  justify-content: space-between; /* Espaciado entre los botones */
+  margin-top: 20px; /* Espacio por encima de los botones */
+  gap: 15px;
+}
+
+.social-button {
+  background-color: #f0f0f0; /* Color de fondo para los botones */
+  border: none; /* Sin borde */
+  border-radius: 4px; /* Esquinas redondeadas */
+  padding: 10px; /* Espaciado interno */
+  font-size: 20px; /* Tamaño del icono */
+  cursor: pointer; /* Cursor de mano al pasar */
+  transition: background 0.3s; /* Transición para el color de fondo */
+  width: 48%; /* Ancho de cada botón */
+}
+
+.social-button:hover {
+  background-color: #e0e0e0; /* Color de fondo al pasar */
+}
+
+/* Estilos para los enlaces de pie de página */
+.footer-links {
+  display: flex; /* Usar flexbox para alinear los enlaces */
+  justify-content: space-around; /* Espaciado entre los enlaces */
+  margin-top: 20px; /* Espacio por encima de los enlaces */
+  font-size: 14px; /* Tamaño de fuente de los enlaces */
+}
+
+.footer-links a {
+  color: #007bff; /* Color de los enlaces */
+  text-decoration: none; /* Sin subrayado */
+  margin: 0 10px; /* Margen horizontal para separar los enlaces */
+}
+
+.footer-links a:hover {
+  text-decoration: underline; /* Subrayar al pasar */
+}
+

@@ -101,12 +101,14 @@ function UserCRUD() {
                     <td>{user.firstname}</td>
                     <td>{user.lastname}</td>
                     <td>
-                      <button className="edit-btn" onClick={() => handleEditUser(user)}>
-                        Editar
-                      </button>
-                      <button className="delete-btn" onClick={() => handleDeleteUser(user.id)}>
-                        Eliminar
-                      </button>
+                      <div className="button-container">
+                        <button className="edit-btn" onClick={() => handleEditUser(user)}>
+                        <i className="bi bi-pencil-square"></i>
+                        </button>
+                        <button className="delete-btn" onClick={() => handleDeleteUser(user.id)}>
+                        <i className="bi bi-trash"></i>
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))

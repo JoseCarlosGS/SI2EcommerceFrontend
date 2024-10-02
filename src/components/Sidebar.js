@@ -34,6 +34,7 @@
             </button>
           </div>
         </div>
+        <h5>Oficina Central</h5>
 
         <ul className="list-unstyled">
           <li className={`sidebar-item ${isAdminOpen ? 'active' : ''}`}>

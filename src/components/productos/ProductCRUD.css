@@ -76,6 +76,23 @@
     color: white;
     margin-right: 5px;
   }
+
+  .modal-btn {
+    position: absolute; /* Posicionamiento absoluto */
+    bottom: 20px; /* Espacio desde la parte inferior */
+    right: 20px; /* Espacio desde la derecha */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    background-color: #007bff; /* Color de fondo (puedes cambiarlo) */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar el ratón */
+    transition: background-color 0.3s; /* Transición suave para el hover */
+}
+
+  .modal-btn:hover {
+      background-color: #0056b3; /* Color de fondo al pasar el ratón */
+  }
   
   .edit-btn:hover {
     background-color: #218838;
@@ -140,3 +157,37 @@
     border: 1px solid #ddd; /* Bordes ligeros */
     cursor: pointer; /* Cambia el cursor al pasar sobre el selector */
   }
+
+  .button-container {
+    display: flex; /* Establece el contenedor como flexbox */
+    gap: 10px; /* Espaciado entre los botones (opcional) */
+  }
+  .edit-btn, .delete-btn, .gallery-btn {
+    display: flex; /* Utiliza flex para centrar el icono */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 40px; /* Ancho fijo */
+    height: 40px; /* Alto fijo */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados (opcional) */
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del icono */
+    font-size: 1.2rem; /* Tamaño del icono */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave */
+  }
+  
+  .edit-btn:hover, .delete-btn:hover, .gallery-btn:hover {
+    background-color: #0056b3; /* Color al pasar el cursor (más oscuro) */
+  }
+  
+  /* Estilo específico para el botón de eliminar */
+  .delete-btn {
+    background-color: #dc3545; /* Color de fondo para el botón de eliminar */
+  }
+  
+  .delete-btn:hover {
+    background-color: #c82333; /* Color al pasar el cursor para el botón de eliminar */
+  }
+
+  

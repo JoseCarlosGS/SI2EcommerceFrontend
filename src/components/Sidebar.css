@@ -1,13 +1,23 @@
 /* Estilos para el contenedor del sidebar */
 .sidebar {
   width: 240px;
-  background-color: #39383e;
+  background-color: #62606c;
   color: white;
   padding: 3px;
   height: 100%;
   transition: width 0.3s;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.sidebar h5{
+  font-size: 25px;
+  margin-left: 25px;
+}
+
+.sidebar.collapsed h5{
+  width: 0;
+  opacity: 0;
 }
 
 .sidebar.collapsed {

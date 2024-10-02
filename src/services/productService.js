@@ -34,4 +34,33 @@ const getCategoriesToProduct = async (productId) => {
   return response.data;
 }
 
-export { getProducts, createProduct, updateProduct, deleteProduct, assignCategoriesToProduct, getCategoriesToProduct };
+const uploadProductImage = async (productId, file) => {
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await axios.put(`${API_URL}/image/upload/${productId}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    return response.data; // Retorna la URL de la imagen
+  } catch (error) {
+    console.error('Error uploading image:', error);
+    throw error;
+  }
+};
+
+const getProductImages = async (productId) => {
+  try {
+    const response = await axios.get(`${API_URL}/${productId}/images`);
+    return response.data; // Retorna la lista de URLs de imágenes
+  } catch (error) {
+    console.error('Error fetching product images:', error);
+    throw error;
+  }
+};
+
+
+export { getProducts, createProduct, updateProduct, deleteProduct, assignCategoriesToProduct, getCategoriesToProduct, uploadProductImage, getProductImages };

@@ -36,8 +36,20 @@ function RoleCRUD() {
                 <td>{role.id}</td>
                 <td>{role.name}</td>
                 <td>
-                  <button className="edit-btn">Editar</button>
-                  <button className="delete-btn">Eliminar</button>
+                <div className="button-container">
+                        <button
+                            className="edit-btn"
+                            // onClick={() => handleEditCategory(category)}
+                          >
+                          <i className="bi bi-pencil-square"></i>
+                          </button>
+                          <button
+                            className="delete-btn"
+                            // onClick={() => handleDeleteCategory(category.id)}
+                          >
+                           <i className="bi bi-trash"></i>
+                          </button>
+                        </div>
                 </td>
               </tr>
             ))

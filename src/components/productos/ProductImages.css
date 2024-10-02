@@ -1,0 +1,38 @@
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: minmax(200px, auto);
+    gap: 10px;
+    position: relative;
+  }
+  
+  .gallery-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  /* Estilos para el botón de añadir imagen */
+  .add-image-button {
+    width: 50%;
+    height: 50%;
+    background-color: #f8f9fa; /* Color de fondo */
+    border: 2px dashed #6c757d; /* Estilo de borde */
+    top: 50%; /* Centrarse verticalmente */
+    left: 50%; 
+    transform: translate(+50%, +50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: #6c757d; /* Color del ícono */
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-image-button:hover {
+    background-color: #e9ecef; /* Color de fondo al hacer hover */
+  }
+  

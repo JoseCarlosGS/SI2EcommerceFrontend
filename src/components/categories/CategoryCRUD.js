@@ -113,18 +113,20 @@ function CategoryCRUD() {
                       )}
                     </td>
                     <td>
-                      <button
-                        className="edit-btn"
-                        onClick={() => handleEditCategory(category)}
-                      >
-                        Editar
-                      </button>
-                      <button
-                        className="delete-btn"
-                        onClick={() => handleDeleteCategory(category.id)}
-                      >
-                        Eliminar
-                      </button>
+                        <div className="button-container">
+                        <button
+                            className="edit-btn"
+                            onClick={() => handleEditCategory(category)}
+                          >
+                          <i className="bi bi-pencil-square"></i>
+                          </button>
+                          <button
+                            className="delete-btn"
+                            onClick={() => handleDeleteCategory(category.id)}
+                          >
+                           <i className="bi bi-trash"></i>
+                          </button>
+                        </div>
                     </td>
                   </tr>
                 ))

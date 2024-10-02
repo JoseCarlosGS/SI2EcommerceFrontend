@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ProductRegister from './ProductRegister'; // Asegúrate de que la ruta sea correcta
 import ReactPaginate from 'react-paginate';
+import Modal from 'react-modal';
 import { getProducts, deleteProduct, getCategoriesToProduct } from '../../services/productService'; // Asegúrate de que la ruta sea correcta
 import './ProductCRUD.css'
+import ProductImages from './ProductImages';
 
 function ProductCRUD() {
   const [products, setProducts] = useState([]);
@@ -11,6 +13,9 @@ function ProductCRUD() {
   const [currentPage, setCurrentPage] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(5); // Cambia este valor según tus necesidades
   const [categoriesMap, setCategoriesMap] = useState({});
+  const [images, setImages] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
 
   const toggleRegisterForm = () => {
     setShowRegister(!showRegister);
@@ -53,6 +58,15 @@ function ProductCRUD() {
     } catch (error) {
       console.error('Error eliminando el producto:', error);
     }
+  };
+
+  const openModal = (productId) => {
+    setSelectedProductId(productId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   // Calcular la cantidad total de páginas
@@ -134,12 +148,17 @@ function ProductCRUD() {
                     </td>
 
                     <td>
-                      <button className="edit-btn" onClick={() => handleEditProduct(product)}>
-                        Editar
-                      </button>
-                      <button className="delete-btn" onClick={() => handleDeleteProduct(product.id)}>
-                        Eliminar
-                      </button>
+                      <div className="button-container">
+                        <button className="edit-btn" onClick={() => handleEditProduct(product)}>
+                          <i className="bi bi-pencil-square"></i> {/* Icono de edición */}
+                        </button>
+                        <button className="delete-btn" onClick={() => handleDeleteProduct(product.id)}>
+                          <i className="bi bi-trash"></i> {/* Icono de eliminar */}
+                        </button>
+                        <button className="gallery-btn" onClick={() => openModal(product.id)}>
+                          <i className="bi bi-images"></i> {/* Icono de galería */}
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))
@@ -166,8 +185,33 @@ function ProductCRUD() {
           />
         </>
       )}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Product Images Modal"
+        style={modalStyles}
+      >
+        <h2>Galeria de imagenes</h2>
+        <ProductImages productId={selectedProductId} />
+        <button className='modal-btn' onClick={closeModal}>Cerrar</button>
+      </Modal>
     </div>
   );
 }
+
+// Estilos del modal
+const modalStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '80%',
+    height: '80%',
+  },
+  
+};
 
 export default ProductCRUD;

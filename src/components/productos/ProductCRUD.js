@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductRegister from './ProductRegister'; // Asegúrate de que la ruta sea correcta
 import ReactPaginate from 'react-paginate';
-import { getProducts, deleteProduct } from '../../services/productService'; // Asegúrate de que la ruta sea correcta
+import { getProducts, deleteProduct, getCategoriesToProduct } from '../../services/productService'; // Asegúrate de que la ruta sea correcta
 import './ProductCRUD.css'
 
 function ProductCRUD() {
@@ -10,6 +10,7 @@ function ProductCRUD() {
   const [currentProduct, setCurrentProduct] = useState(null); // Para manejar la edición
   const [currentPage, setCurrentPage] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(5); // Cambia este valor según tus necesidades
+  const [categoriesMap, setCategoriesMap] = useState({});
 
   const toggleRegisterForm = () => {
     setShowRegister(!showRegister);
@@ -19,9 +20,25 @@ function ProductCRUD() {
     const fetchProducts = async () => {
       const data = await getProducts();
       setProducts(data);
+
+      await fetchCategoriesForProducts(data);
     };
     fetchProducts();
   }, []);
+
+  const fetchCategoriesForProducts = async (fetchedProducts) => {
+    const map = {};
+    for (const product of fetchedProducts) {
+        try {
+            const categories = await getCategoriesToProduct(product.id);
+            map[product.id] = categories; // Almacena las categorías en el mapa
+        } catch (error) {
+            console.error(`Error fetching categories for product ${product.id}:`, error);
+            map[product.id] = []; // Si hay un error, asignar un arreglo vacío
+        }
+    }
+    setCategoriesMap(map);
+  };
 
   const handleEditProduct = (product) => {
     setCurrentProduct(product); // Establece el producto a editar
@@ -92,6 +109,7 @@ function ProductCRUD() {
                 <th>Precio</th>
                 <th>Talla</th>
                 <th>Stock</th>
+                <th>Categorias</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -106,6 +124,15 @@ function ProductCRUD() {
                     <td>{product.price}</td>
                     <td>{product.size}</td>
                     <td>{product.stock}</td>
+                    <td>
+                          {/* Muestra las categorías obtenidas del servicio */}
+                          {categoriesMap[product.id] && categoriesMap[product.id].length > 0 ? (
+                                categoriesMap[product.id].map((category) => category.name).join(', ')
+                          ) : (
+                                'No hay categorías'
+                          )}
+                    </td>
+
                     <td>
                       <button className="edit-btn" onClick={() => handleEditProduct(product)}>
                         Editar

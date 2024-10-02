@@ -1,32 +1,92 @@
 import { useEffect, useState } from 'react';
-import { createProduct, updateProduct } from '../../services/productService'; // Asegúrate de tener este servicio
+import { createProduct, updateProduct, assignCategoriesToProduct } from '../../services/productService'; 
+import { getCategories } from '../../services/categoryService';
+import { getCategoriesToProduct } from '../../services/productService'; // Asegúrate de que este servicio esté importado
 import './ProductRegister.css';
 
 const ProductRegister = ({ onClose, product }) => {
+  const [categories, setCategories] = useState([]);
   const [formData, setFormData] = useState({
-    name: '', // Nuevo campo para el nombre del producto
+    name: '',
     brand: '',
     description: '',
     price: '',
     size: '',
-    stock: ''
+    stock: '',
+    selectedCategories: {},
+    selectedSubcategories: {}
   });
-  const [error, setError] = useState(null); // Manejo de errores
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (product) {
-      setFormData(product); // Cargar datos del producto si está editando
-    } else {
-      setFormData({
-        name: '',
-        brand: '',
-        description: '',
-        price: '',
-        size: '',
-        stock: ''
-      }); // Reiniciar el formulario si es nuevo
-    }
+    const fetchCategories = async () => {
+      try {
+        const data = await getCategories();
+        if (Array.isArray(data)) {
+          setCategories(data);
+        } else {
+          console.error('Error: La data no es un array', data);
+        }
+      } catch (error) {
+        console.error('Error al obtener categorías:', error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const fetchProductCategories = async () => {
+      if (product && product.id) {
+        try {
+          const categoriesData = await getCategoriesToProduct(product.id);
+          const selectedCategories = categoriesData.reduce((acc, cat) => {
+            acc[cat.id] = true; // Asumimos que cat.id es el identificador de la categoría
+            return acc;
+          }, {});
+          setFormData({
+            ...product,
+            selectedCategories,
+            selectedSubcategories: {} // Asignar subcategorías si es necesario
+          });
+        } catch (error) {
+          console.error('Error al obtener categorías para el producto:', error);
+        }
+      } else {
+        setFormData({
+          name: '',
+          brand: '',
+          description: '',
+          price: '',
+          size: '',
+          stock: '',
+          selectedCategories: {},
+          selectedSubcategories: {}
+        });
+      }
+    };
+
+    fetchProductCategories();
   }, [product]);
+
+  const handleCategoryChange = (categoryId) => {
+    setFormData({
+      ...formData,
+      selectedCategories: {
+        ...formData.selectedCategories,
+        [categoryId]: !formData.selectedCategories[categoryId],
+      }
+    });
+  };
+
+  const handleSubcategoryChange = (subcategoryId) => {
+    setFormData({
+      ...formData,
+      selectedSubcategories: {
+        ...formData.selectedSubcategories,
+        [subcategoryId]: !formData.selectedSubcategories[subcategoryId],
+      }
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,31 +95,33 @@ const ProductRegister = ({ onClose, product }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const selectedCategoryIds = Object.keys(formData.selectedCategories).filter(key => formData.selectedCategories[key]);
+    const selectedSubcategoryIds = Object.keys(formData.selectedSubcategories).filter(key => formData.selectedSubcategories[key]);
 
     try {
       if (product && product.id) {
-        // Llamada al servicio para actualizar solo los campos necesarios
         await updateProduct(product.id, {
           id: formData.id,
-          name: formData.name, // Campo de nombre
+          name: formData.name,
           brand: formData.brand,
           description: formData.description,
           price: formData.price,
           size: formData.size,
-          stock: formData.stock
+          stock: formData.stock,
+          categories: selectedCategoryIds // Asumiendo que se pasan solo las categorías seleccionadas
         });
       } else {
-        // Llamada al servicio para crear un nuevo producto
-        await createProduct({
-          name: formData.name, // Campo de nombre
+        const newProduct = await createProduct({
+          name: formData.name,
           brand: formData.brand,
           description: formData.description,
           price: formData.price,
           size: formData.size,
           stock: formData.stock
         });
+        await assignCategoriesToProduct(newProduct.id, selectedCategoryIds); // Solo asignar categorías seleccionadas
       }
-      onClose(); // Cerrar el modal o limpiar el formulario
+      onClose();
       window.location.reload();
     } catch (err) {
       setError('Error al guardar el producto');
@@ -75,19 +137,15 @@ const ProductRegister = ({ onClose, product }) => {
               <h2 className="card-title text-center mb-4">
                 {product ? 'Editar Producto' : 'Registrar Producto'}
               </h2>
-              {error && <p className="alert alert-danger">{error}</p>} {/* Mostrar error si hay */}
-              <form
-                onSubmit={handleSubmit}
-                className="needs-validation"
-                noValidate
-              >
+              {error && <p className="alert alert-danger">{error}</p>}
+              <form onSubmit={handleSubmit} className="needs-validation" noValidate>
                 {/* Nombre del Producto */}
                 <div className="row mb-3">
                   <label className="col-sm-3 col-form-label">Nombre del Producto:</label>
                   <div className="col-sm-9">
                     <input
                       type="text"
-                      name="name" // Campo para el nombre del producto
+                      name="name"
                       value={formData.name}
                       onChange={handleChange}
                       className="form-control"
@@ -177,21 +235,47 @@ const ProductRegister = ({ onClose, product }) => {
                   </div>
                 </div>
 
-                {/* Botón Guardar */}
-                <div className="d-flex justify-content-end">
-                  <button type="submit" className="btn btn-primary me-2">
-                    Guardar
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onClose(); // Cerrar el modal al cancelar
-                    }}
-                    className="btn btn-secondary"
-                  >
-                    Cancelar
-                  </button>
+                {/* Categorías */}
+                <div className="row mb-3">
+                  <label className="col-sm-3 col-form-label">Categorías:</label>
+                  <div className="col-sm-9">
+                    {categories && categories.length > 0 && categories.map(category => (
+                      <div key={category.id}>
+                        <label>
+                          <input
+                            type="checkbox"
+                            checked={!!formData.selectedCategories[category.id]}
+                            onChange={() => handleCategoryChange(category.id)}
+                          />
+                          {category.name}
+                        </label>
+
+                        {/* Subcategorías */}
+                        {formData.selectedCategories[category.id] && Array.isArray(category.subcategories) && category.subcategories.length > 0 && (
+                          <div className="ms-3">
+                            {category.subcategories.map(subcategory => (
+                              <label key={subcategory.id}>
+                                <input
+                                  type="checkbox"
+                                  checked={!!formData.selectedSubcategories[subcategory.id]}
+                                  onChange={() => handleSubcategoryChange(subcategory.id)}
+                                />
+                                {subcategory.name}
+                              </label>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
+
+                <button type="submit" className="btn btn-primary">
+                  {product ? 'Actualizar Producto' : 'Registrar Producto'}
+                </button>
+                <button type="button" className="btn btn-secondary ms-2" onClick={onClose}>
+                  Cancelar
+                </button>
               </form>
             </div>
           </div>
@@ -202,3 +286,5 @@ const ProductRegister = ({ onClose, product }) => {
 };
 
 export default ProductRegister;
+
+

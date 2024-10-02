@@ -14,13 +14,14 @@
 
 .navbar {
     display: flex;
+    align-items: center;
     background-color: #37373f;;
     color: rgb(241, 239, 239);
-    padding: 10px 20px; 
+    padding: 0px 20px; 
     position: relative; /* Asegurarse de que no esté en posición absoluta */
     z-index: 1;
     box-sizing: border-box;
-    height: 70px;
+    height: 50px;
   }
   .navbar .nav-link {
     color: white;
@@ -38,6 +39,7 @@
   .navbar h1 {
     flex: 1; /* Permitir que el título tome el espacio disponible */
     text-align: center; /* Centrar el título */
+    margin: 0;
   }
   
   .navbar button {

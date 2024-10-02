@@ -24,4 +24,14 @@ const deleteProduct = async (productId) => {
   return response.data;
 };
 
-export { getProducts, createProduct, updateProduct, deleteProduct };
+const assignCategoriesToProduct = async (productId, productData) => {
+  const response = await axios.post(`${API_URL}/${productId}/categories`, productData)
+  return response.data;
+}
+
+const getCategoriesToProduct = async (productId) => {
+  const response = await axios.get(`${API_URL}/${productId}/categories`)
+  return response.data;
+}
+
+export { getProducts, createProduct, updateProduct, deleteProduct, assignCategoriesToProduct, getCategoriesToProduct };
